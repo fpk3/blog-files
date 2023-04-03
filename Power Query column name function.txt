@@ -1,0 +1,14 @@
+    = (tableName) => let
+            Source = tableName,
+            Custom1 = Table.TransformColumnNames(
+            Table.TransformColumnNames(
+              Table.TransformColumnNames(
+                Source, 
+                each Replacer.ReplaceText(_, "_", " ")
+              ), 
+              Text.Proper
+            ), 
+            each Replacer.ReplaceText(_, " Id", " ID")
+          )
+        in
+            Custom1
